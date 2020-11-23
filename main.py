@@ -76,12 +76,11 @@ def summary_excels_data():
             row_data = []
             for k in index_arr:
                 dv = sheet1.cell_value(j, k)
-                print(dv)
                 row_data.append(dv)
             # print('行数据：', row_data)
             data_arr.append(row_data)
     r_book = xlwt.Workbook(encoding="utf-8", style_compression=0)
-    r_sheet = r_book.add_sheet("测试", cell_overwrite_ok=True)
+    r_sheet = r_book.add_sheet("sheet1", cell_overwrite_ok=True)
     # print(data_arr)
     for r_i in range(len(data_arr)):
         for r_j in range(len(data_arr[i])):
@@ -106,13 +105,13 @@ auto_merge = Button(root, text="开始合并", command=concat_excels, highlightb
 Label(root, text="（选择目录后点击按钮）").grid(row=1, column=1)
 
 # 首行标题选项
-Label(root, text="首行标题:").grid(row=2, column=0)
-radio_int.set(1)
-r1 = Radiobutton(root, text="有", command=radio_print, value=1, variable=radio_int,  bg='blue').grid(row=2, column=1)
-r2 = Radiobutton(root, text="无", command=radio_print, value=0, variable=radio_int,  bg='blue').grid(row=2, column=2)
+# Label(root, text="首行标题:").grid(row=2, column=0)
+# radio_int.set(1)
+# r1 = Radiobutton(root, text="有", command=radio_print, value=1, variable=radio_int,  bg='blue').grid(row=2, column=1)
+# r2 = Radiobutton(root, text="无", command=radio_print, value=0, variable=radio_int,  bg='blue').grid(row=2, column=2)
 # 自动计数
-auto_count = Button(root, text="自动统计", command=count_excels, highlightbackground='gray').grid(row=3, column=0)
-Label(root, text="（选择目录和首行标题后点击按钮）").grid(row=3, column=1)
+# auto_count = Button(root, text="自动统计", command=count_excels, highlightbackground='gray').grid(row=3, column=0)
+# Label(root, text="（选择目录和首行标题后点击按钮）").grid(row=3, column=1)
 
 # 自动汇总
 Label(root, text="汇总关键词(以-分隔)：").grid(row=5, column=0)
