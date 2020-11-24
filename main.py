@@ -65,14 +65,17 @@ def summary_excels_data():
         if '.xlsx' in fname
     ]
     data_arr = []
-    for book in rd_excels:
-        sheet1 = book.sheet_by_index(0)
+    for book_index in range(len(rd_excels)):
+        sheet1 = rd_excels[book_index].sheet_by_index(0)
         index_arr = []
         for i in range(sheet1.ncols):
             cell_value = sheet1.cell_value(0, i)
             if cell_value in kw_arr:
                 index_arr.append(i)
-        for j in range(sheet1.nrows):
+        row_start = 0  # 去除多余标题
+        if book_index != 0:
+            row_start = 1
+        for j in range(row_start, sheet1.nrows):
             row_data = []
             for k in index_arr:
                 dv = sheet1.cell_value(j, k)
