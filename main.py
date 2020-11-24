@@ -56,7 +56,7 @@ def summary_excels_data():
         return
     keywords = summary.get()
     kw_arr = keywords.split('-')
-    if len(kw_arr) == 0:
+    if len(kw_arr) < 2 and ('' in kw_arr):
         messagebox.showerror(title="合并错误", message="没有关键词")
         return
     rd_excels = [
@@ -78,7 +78,11 @@ def summary_excels_data():
                 dv = sheet1.cell_value(j, k)
                 row_data.append(dv)
             # print('行数据：', row_data)
-            data_arr.append(row_data)
+            if len(row_data) > 0:
+                data_arr.append(row_data)
+    if len(data_arr) == 0:
+        messagebox.showerror(title="合并错误", message="关键词错误")  # 容错处理
+        return
     r_book = xlwt.Workbook(encoding="utf-8", style_compression=0)
     r_sheet = r_book.add_sheet("sheet1", cell_overwrite_ok=True)
     # print(data_arr)
